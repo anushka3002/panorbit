@@ -7,13 +7,10 @@ const ProfileSidebar = () => {
     let value = useContext(UserContext);
     const {
       visibleScreen,
-      setVisibleScreen
+      setVisibleScreen,
+      titleCase
     } = value;
 
-    function titleCase(str) {
-      if (str) return str.toLowerCase().replace(/\b\w/g, (s) => s.toUpperCase());
-      else return "";
-    }
     const screens = ["profile","posts","todo","gallery"]
 
     return (

@@ -1,6 +1,4 @@
-import axios from "axios";
-import React, { useContext } from "react";
-import { useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { UserContext } from "../../App";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -8,40 +6,27 @@ import { useNavigate } from "react-router-dom";
 const ProfileNavbar = () => {
   let secondUser = JSON.parse(localStorage.getItem("secondUser")) || [];
   let thirdUser = JSON.parse(localStorage.getItem("thirdUser")) || [];
+
   let value = useContext(UserContext);
-  
   const {
-    setData,
     data,
-    secondData,
-    thirdData,
-    setThirdData,
-    setSecondData,
     visibleDropdown,
     setVisibleDropdown,
-    visible,
-    setVisible,
-    visibleScreen,
-    setVisibleScreen
+    setVisibleScreen,
+    titleCase,
   } = value;
+
   const location = useLocation();
   const navigate = useNavigate();
 
   return (
+    // header
     <div className="mx-12 border-b">
       <div className="border-b w-full flex py-8 justify-between">
         <div
           className={`font-medium sm:block hidden text-[18px] text-[#545454] text-left`}
         >
-          {location.pathname == "/profile" ? (
-            <p>Profile</p>
-          ) : location.pathname == "/gallery" ? (
-            <p>Gallery</p>
-          ) : location.pathname == "/posts" ? (
-            <p>Posts</p>
-          ) : (
-            <p>Todo</p>
-          )}
+          <p>{titleCase(location.pathname.substring(1))}</p>
         </div>
         <div
           onClick={() => setVisibleDropdown(!visibleDropdown)}
@@ -70,38 +55,44 @@ const ProfileNavbar = () => {
         <p className="text-[14px] text-[#545454] text-center">{data.email}</p>
         <div
           onClick={() => {
-            setData(secondData);
-            setSecondData(data);
             navigate("/profile");
-            setVisibleScreen("profile")
+            setVisibleScreen("profile");
+            localStorage.setItem("panorbit user", JSON.stringify(secondUser));
+            localStorage.setItem("secondUser", JSON.stringify(data));
           }}
           className="flex py-3 border-b cursor-pointer"
         >
           <img
             className="w-[30px] h-[30px] rounded-[50%] mr-3"
-            src={secondData.profilepicture}
+            src={secondUser.profilepicture}
           ></img>
           <p className="text-[#1c2938] text-[15px] my-auto">
-            {secondData.name}
+            {secondUser.name}
           </p>
         </div>
         <div
           onClick={() => {
-            setData(thirdData);
-            setThirdData(data);
             navigate("/profile");
-            setVisibleScreen("profile")
+            setVisibleScreen("profile");
+            localStorage.setItem("panorbit user", JSON.stringify(thirdUser));
+            localStorage.setItem("thirdUser", JSON.stringify(data));
           }}
           className="flex py-3 border-b cursor-pointer"
         >
           <img
             className="w-[30px] h-[30px] rounded-[50%] mr-3"
-            src={thirdData.profilepicture}
+            src={thirdUser.profilepicture}
           ></img>
-          <p className="text-[#1c2938] text-[15px] my-auto">{thirdData.name}</p>
+          <p className="text-[#1c2938] text-[15px] my-auto">{thirdUser.name}</p>
         </div>
         <div className="items-center justify-center flex">
-          <button onClick={()=>{navigate("/");setVisibleDropdown(false)}} className="border bg-[#d55151] rounded-[20px] text-[white] px-3 py-1 mt-2">
+          <button
+            onClick={() => {
+              navigate("/");
+              setVisibleDropdown(false);
+            }}
+            className="border bg-[#d55151] rounded-[20px] text-[white] px-3 py-1 mt-2"
+          >
             Sign out
           </button>
         </div>

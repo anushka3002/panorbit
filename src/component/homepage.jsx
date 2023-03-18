@@ -7,8 +7,9 @@ import { UserContext } from "../App";
 
 const Homepage = () => {
   let value = useContext(UserContext);
-  const {setData,data,secondData,setSecondData,thirdData,setThirdData,users,setUsers} = value
+  const {users,setUsers} = value
 
+  // fetching data from api
   useEffect(() => {
     const getuser = () =>
       axios
@@ -27,9 +28,7 @@ const Homepage = () => {
     e.id==users.length ? localStorage.setItem("secondUser",JSON.stringify(users[0])) : localStorage.setItem("secondUser",JSON.stringify(users[e.id]))
     e.id==users.length-1 ? localStorage.setItem("thirdUser",JSON.stringify(users[0])) : e.id==users.length ? localStorage.setItem("thirdUser",JSON.stringify(users[1])) : localStorage.setItem("thirdUser",JSON.stringify(users[e.id+1]))
     localStorage.setItem("panorbit users", JSON.stringify(e));
-    e.id==users.length ? setSecondData(users[0]) : setSecondData(users[e.id])
-    e.id==users.length-1 ? setThirdData(users[0]) : e.id==users.length ? setThirdData(users[1]) : setThirdData(users[e.id+1])
-    setData(e)
+    localStorage.setItem("panorbit user",JSON.stringify(e))
   };
 
   return (
@@ -39,6 +38,7 @@ const Homepage = () => {
           <p className="text-center">Select an account</p>
         </div>
         <div className="px-8 overflow-y-scroll h-[370px] scroll-panorbit">
+          {/* mapping all users data */}
           {users.map((e) => {
             return (
               <Link to="/profile">

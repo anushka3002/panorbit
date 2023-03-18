@@ -4,7 +4,6 @@ import Homepage from '../component/homepage'
 import Gallery from '../component/Profile/gallery'
 import Post from '../component/Profile/post'
 import Profile from '../component/Profile/profile'
-// import ProfileDetails from '../component/Profile/profileSidebar'
 import Todo from '../component/Profile/todo'
 
 const Router = () => {
