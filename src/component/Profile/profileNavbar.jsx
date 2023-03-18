@@ -20,7 +20,9 @@ const ProfileNavbar = () => {
     visibleDropdown,
     setVisibleDropdown,
     visible,
-    setVisible
+    setVisible,
+    visibleScreen,
+    setVisibleScreen
   } = value;
   const location = useLocation();
   const navigate = useNavigate();
@@ -35,7 +37,7 @@ const ProfileNavbar = () => {
             <p>Profile</p>
           ) : location.pathname == "/gallery" ? (
             <p>Gallery</p>
-          ) : location.pathname == "/post" ? (
+          ) : location.pathname == "/posts" ? (
             <p>Posts</p>
           ) : (
             <p>Todo</p>
@@ -59,7 +61,7 @@ const ProfileNavbar = () => {
         } items-center p-5 rounded-[20px] justify-end fixed right-[40px] bg-[white] shadow-2xl mt-[-20px]`}
       >
         <img
-          className="w-[50%] h-[50%] border rounded-[50%] mx-auto"
+          className="w-[50%] h-[50%] rounded-[50%] mx-auto"
           src={data.profilepicture}
         ></img>
         <p className="font-medium text-[18px] text-[#545454] text-center">
@@ -71,7 +73,7 @@ const ProfileNavbar = () => {
             setData(secondData);
             setSecondData(data);
             navigate("/profile");
-            setVisible({...visible,profileV:"visible",galleryV:"hidden",todoV:"hidden",postV:"hidden"})
+            setVisibleScreen("profile")
           }}
           className="flex py-3 border-b cursor-pointer"
         >
@@ -88,7 +90,7 @@ const ProfileNavbar = () => {
             setData(thirdData);
             setThirdData(data);
             navigate("/profile");
-            setVisible({...visible,profileV:"visible",galleryV:"hidden",todoV:"hidden",postV:"hidden"})
+            setVisibleScreen("profile")
           }}
           className="flex py-3 border-b cursor-pointer"
         >

@@ -5,10 +5,13 @@ const Profile = () => {
   let value = useContext(UserContext);
   const { data } = value;
 
+  console.log(data.name==undefined && "data is undefined")
+
   return (
     <div className="sm:mr-12 mr-5  mt-8">
       {/* body */}
-      <div className="block sm:flex">
+      {data?.name==undefined ? <div className=' w-full items-center text-center my-auto'>
+    <p className='sm:text-7xl text-5xl font-bold text-[#eeeeee] mt-[150px]'>No data available</p></div> : <div className="block sm:flex">
         <div className="lg:w-[40%] w-[100%]">
           <img
             className="w-[50%] mx-auto rounded-[50%]"
@@ -115,7 +118,7 @@ const Profile = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div>}
     </div>
   );
 };
