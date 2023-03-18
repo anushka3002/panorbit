@@ -44,7 +44,7 @@ function App() {
       <Router/>
       </div>
     </div>
-    <Chat/>
+    {location.pathname!=="/" && <Chat/>}
     </UserContext.Provider>
   );
 }
