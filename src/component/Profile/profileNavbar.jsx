@@ -9,6 +9,7 @@ const ProfileNavbar = () => {
   let secondUser = JSON.parse(localStorage.getItem("secondUser")) || [];
   let thirdUser = JSON.parse(localStorage.getItem("thirdUser")) || [];
   let value = useContext(UserContext);
+  
   const {
     setData,
     data,

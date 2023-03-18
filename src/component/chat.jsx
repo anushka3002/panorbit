@@ -4,15 +4,17 @@ import { UserContext } from "../App";
 const Chat = () => {
   let user = JSON.parse(localStorage.getItem("panorbit user")) || [];
   let users = JSON.parse(localStorage.getItem("all users")) || [];
-  const [showList, setShowList] = useState(false);
-  const [showChat,setShowChat] = useState(false)
-  const [chatUser, setChatUser] = useState(user);
-  console.log(users, "users");
+  const [chatUser, setChatUser] = useState(user)
+  let value = useContext(UserContext);
+  const {data,showList,
+    setShowList,
+    showChat,
+    setShowChat} = value;
 
   return (
-    <div className="border">
-      <div className="w-full flex justify-end fixed bottom-0">
-        <div className={`${showChat?"visible":"hidden"} border border-[#2c65c8] bg-[white] rounded-t-[12px] fixed bottom-0 mr-[250px]`}>
+    <div className="border border-[red]">
+      <div className="right-0 flex justify-end fixed bottom-0 mr-12">
+        <div className={`${showChat?"visible":"hidden"} border border-[#2c65c8] bg-[white] rounded-t-[12px] fixed bottom-0 mr-[200px]`}>
           <div onClick={()=>setShowChat(!showChat)} className="bg-[#2c65c8] cursor-pointer py-2 rounded-t-[12px]">
             <div className="flex px-2 justify-between">
               <div className="flex">
@@ -61,7 +63,7 @@ const Chat = () => {
             ></img>
           </div>
         </div>
-        <div className="border mr-12 w-[200px] border-[#2c65c8] rounded-t-[12px]">
+        <div className="border w-[200px] border-[#2c65c8] rounded-t-[12px]">
           <div
             onClick={() =>{ setShowList(!showList);setShowChat(false)}}
             className=" bg-[#2c65c8] cursor-pointer justify-between px-3 flex py-2 w-full flex rounded-t-[12px]"
@@ -100,7 +102,7 @@ const Chat = () => {
                   </div>
                   <div
                     className={`${
-                      e.id == 2 || e.id == user.id || e.id == 3 || e.id == 7
+                      e.id == 2 || e.id == data.id || e.id == 3 || e.id == 7
                         ? "bg-[#1eaa5c]"
                         : "bg-[#d4d4d4]"
                     } w-[7px] h-[7px] rounded-[50%] my-auto`}

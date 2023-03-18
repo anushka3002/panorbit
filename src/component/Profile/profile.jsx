@@ -3,8 +3,7 @@ import { UserContext } from "../../App";
 
 const Profile = () => {
   let value = useContext(UserContext);
-  const { data, setVisibleDropdown } = value;
-  console.log(data);
+  const { data } = value;
 
   return (
     <div className="sm:mr-12 mr-5  mt-8">

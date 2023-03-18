@@ -28,7 +28,7 @@ const Homepage = () => {
     e.id==users.length-1 ? localStorage.setItem("thirdUser",JSON.stringify(users[0])) : e.id==users.length ? localStorage.setItem("thirdUser",JSON.stringify(users[1])) : localStorage.setItem("thirdUser",JSON.stringify(users[e.id+1]))
     localStorage.setItem("panorbit users", JSON.stringify(e));
     e.id==users.length ? setSecondData(users[0]) : setSecondData(users[e.id])
-    e.id==users.length-1 ? setThirdData(users[0]) : setThirdData(users[1])
+    e.id==users.length-1 ? setThirdData(users[0]) : e.id==users.length ? setThirdData(users[1]) : setThirdData(users[e.id+1])
     setData(e)
   };
 

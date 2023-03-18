@@ -17,6 +17,8 @@ function App() {
   const [secondData,setSecondData] = useState(secondUser)
   const [thirdData,setThirdData] = useState(thirdUser)
   const [visibleDropdown,setVisibleDropdown] = useState(false)
+  const [showList, setShowList] = useState(false);
+  const [showChat,setShowChat] = useState(false)
   const [visible,setVisible] = useState({
     profileV:"visible",
     postV:"hidden",
@@ -32,6 +34,12 @@ function App() {
     }
   },[location.pathname])
 
+  const handleShow = () =>{
+    visibleDropdown==true && setVisibleDropdown(false)
+    showChat && setShowChat(false) 
+    showList && setShowList(false);
+  }
+
   const mainData={
     secondData,
     setSecondData,
@@ -44,14 +52,17 @@ function App() {
     users, 
     setUsers,
     visible,
-    setVisible
+    setVisible,
+    showList,
+    setShowList,
+    showChat,
+    setShowChat
   }
-  console.log(location.pathname,"location")
 
   // https://panorbit.in/api/users.json
   return (
     <UserContext.Provider value={mainData}>
-    <div onClick={()=>visibleDropdown==true && setVisibleDropdown(false)} className="flex">
+    <div onClick={()=>handleShow()} className="flex">
       {location.pathname!=="/" && <ProfileSidebar/>}
       <div className='w-[80%]'>
       {location.pathname!=="/" && <ProfileNavbar/>}
