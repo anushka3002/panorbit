@@ -12,12 +12,19 @@ function App() {
   let user = JSON.parse(localStorage.getItem("panorbit user")) || [];
   let secondUser = JSON.parse(localStorage.getItem("secondUser")) || [];
   let thirdUser = JSON.parse(localStorage.getItem("thirdUser")) || [];
+  const [secondData,setSecondData] = useState(secondUser)
+  const [thirdData,setThirdData] = useState(thirdUser)
+  const [visible,setVisible] = useState(false)
   const [data, setData] = useState(user);
   const mainData={
-    secondUser,
-    thirdUser,
+    secondData,
+    setSecondData,
+    thirdData,
+    setThirdData,
     data,
-    setData
+    setData,
+    visible,
+    setVisible
   }
   const location = useLocation();  
   console.log(location.pathname,"location")

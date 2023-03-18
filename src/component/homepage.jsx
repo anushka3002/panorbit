@@ -8,7 +8,7 @@ import { UserContext } from "../App";
 const Homepage = () => {
   const [user, setuser] = useState([]);
   let value = useContext(UserContext);
-  const {setData,data} = value
+  const {setData,data,secondData,setSecondData,thirdData,setThirdData} = value
 
   useEffect(() => {
     const getuser = () =>
@@ -28,6 +28,8 @@ const Homepage = () => {
     e.id==user.length ? localStorage.setItem("secondUser",JSON.stringify(user[0])) : localStorage.setItem("secondUser",JSON.stringify(user[e.id]))
     e.id==user.length-1 ? localStorage.setItem("thirdUser",JSON.stringify(user[0])) : e.id==user.length ? localStorage.setItem("thirdUser",JSON.stringify(user[1])) : localStorage.setItem("thirdUser",JSON.stringify(user[e.id+1]))
     localStorage.setItem("panorbit user", JSON.stringify(e));
+    e.id==user.length ? setSecondData(user[0]) : setSecondData(user[e.id])
+    e.id==user.length-1 ? setThirdData(user[0]) : setThirdData(user[1])
     setData(e)
   };
 
