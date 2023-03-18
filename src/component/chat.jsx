@@ -12,7 +12,7 @@ const Chat = () => {
     setShowChat} = value;
 
   return (
-    <div className="border border-[red]">
+    <div>
       <div className="right-0 flex justify-end fixed bottom-0 mr-12">
         <div className={`${showChat?"visible":"hidden"} border border-[#2c65c8] bg-[white] rounded-t-[12px] fixed bottom-0 mr-[200px]`}>
           <div onClick={()=>setShowChat(!showChat)} className="bg-[#2c65c8] cursor-pointer py-2 rounded-t-[12px]">
