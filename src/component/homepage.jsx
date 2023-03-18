@@ -6,17 +6,16 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../App";
 
 const Homepage = () => {
-  const [user, setuser] = useState([]);
   let value = useContext(UserContext);
-  const {setData,data,secondData,setSecondData,thirdData,setThirdData} = value
+  const {setData,data,secondData,setSecondData,thirdData,setThirdData,users,setUsers} = value
 
   useEffect(() => {
     const getuser = () =>
       axios
         .get("https://panorbit.in/api/users.json")
         .then((response) => {
-          console.log(response.data.users,"users")
-          setuser(response.data.users);
+          setUsers(response.data.users);
+          localStorage.setItem("all users",JSON.stringify(response.data.users))
         })
         .catch((err) => {
           console.log(err);
@@ -25,11 +24,11 @@ const Homepage = () => {
   }, []);
 
   const handleClick = (e) => {
-    e.id==user.length ? localStorage.setItem("secondUser",JSON.stringify(user[0])) : localStorage.setItem("secondUser",JSON.stringify(user[e.id]))
-    e.id==user.length-1 ? localStorage.setItem("thirdUser",JSON.stringify(user[0])) : e.id==user.length ? localStorage.setItem("thirdUser",JSON.stringify(user[1])) : localStorage.setItem("thirdUser",JSON.stringify(user[e.id+1]))
-    localStorage.setItem("panorbit user", JSON.stringify(e));
-    e.id==user.length ? setSecondData(user[0]) : setSecondData(user[e.id])
-    e.id==user.length-1 ? setThirdData(user[0]) : setThirdData(user[1])
+    e.id==users.length ? localStorage.setItem("secondUser",JSON.stringify(users[0])) : localStorage.setItem("secondUser",JSON.stringify(users[e.id]))
+    e.id==users.length-1 ? localStorage.setItem("thirdUser",JSON.stringify(users[0])) : e.id==users.length ? localStorage.setItem("thirdUser",JSON.stringify(users[1])) : localStorage.setItem("thirdUser",JSON.stringify(users[e.id+1]))
+    localStorage.setItem("panorbit users", JSON.stringify(e));
+    e.id==users.length ? setSecondData(users[0]) : setSecondData(users[e.id])
+    e.id==users.length-1 ? setThirdData(users[0]) : setThirdData(users[1])
     setData(e)
   };
 
@@ -40,7 +39,7 @@ const Homepage = () => {
           <p className="text-center">Select an account</p>
         </div>
         <div className="px-8 overflow-y-scroll h-[370px] scroll-panorbit">
-          {user.map((e) => {
+          {users.map((e) => {
             return (
               <Link to="/profile">
                 <div
