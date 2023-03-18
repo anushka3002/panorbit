@@ -5,7 +5,7 @@ import Homepage from './component/homepage';
 import ProfileSidebar from './component/Profile/profileSidebar';
 import { useLocation } from 'react-router-dom';
 import ProfileNavbar from './component/Profile/profileNavbar';
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import Chat from './component/chat';
 export let UserContext = createContext();
 
@@ -16,8 +16,21 @@ function App() {
   const [users, setUsers] = useState([]);
   const [secondData,setSecondData] = useState(secondUser)
   const [thirdData,setThirdData] = useState(thirdUser)
-  const [visible,setVisible] = useState(false)
+  const [visibleDropdown,setVisibleDropdown] = useState(false)
+  const [visible,setVisible] = useState({
+    profileV:"visible",
+    postV:"hidden",
+    galleryV:"hidden",
+    todoV:"hidden"
+})
   const [data, setData] = useState(user);
+  const location = useLocation();  
+
+  useEffect(()=>{
+    if(location.pathname=="/"){
+      setVisibleDropdown(false)
+    }
+  },[location.pathname])
 
   const mainData={
     secondData,
@@ -26,18 +39,19 @@ function App() {
     setThirdData,
     data,
     setData,
-    visible,
-    setVisible,
+    visibleDropdown,
+    setVisibleDropdown,
     users, 
-    setUsers
+    setUsers,
+    visible,
+    setVisible
   }
-  const location = useLocation();  
   console.log(location.pathname,"location")
 
   // https://panorbit.in/api/users.json
   return (
     <UserContext.Provider value={mainData}>
-    <div className="flex">
+    <div onClick={()=>visibleDropdown==true && setVisibleDropdown(false)} className="flex">
       {location.pathname!=="/" && <ProfileSidebar/>}
       <div className='w-[80%]'>
       {location.pathname!=="/" && <ProfileNavbar/>}

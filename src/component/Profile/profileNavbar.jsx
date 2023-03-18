@@ -16,18 +16,19 @@ const ProfileNavbar = () => {
     thirdData,
     setThirdData,
     setSecondData,
+    visibleDropdown,
+    setVisibleDropdown,
     visible,
-    setVisible,
+    setVisible
   } = value;
   const location = useLocation();
   const navigate = useNavigate();
 
   return (
     <div className="mx-12 border-b">
-      <div className="border-b w-full flex justify-between">
+      <div className="border-b w-full flex py-8 justify-between">
         <div
-          onClick={() => setVisible(false)}
-          className="font-medium w-[80%] py-8 text-[18px] text-[#545454] text-left"
+          className={`font-medium sm:block hidden text-[18px] text-[#545454] text-left`}
         >
           {location.pathname == "/profile" ? (
             <p>Profile</p>
@@ -40,8 +41,8 @@ const ProfileNavbar = () => {
           )}
         </div>
         <div
-          onClick={() => setVisible(!visible)}
-          className="flex cursor-pointer my-auto w-[20%]"
+          onClick={() => setVisibleDropdown(!visibleDropdown)}
+          className="flex cursor-pointer my-auto"
         >
           <img
             className="w-[30px] h-[30px] rounded-[50%]"
@@ -52,8 +53,8 @@ const ProfileNavbar = () => {
       </div>
       {/* user dropdown */}
       <div
-        className={`w-[20%] ${
-          visible ? "block" : "hidden"
+        className={`w-[45%] sm:w-[20%] ${
+          visibleDropdown ? "block" : "hidden"
         } items-center p-5 rounded-[20px] justify-end fixed right-[40px] bg-[white] shadow-2xl mt-[-20px]`}
       >
         <img
@@ -69,6 +70,7 @@ const ProfileNavbar = () => {
             setData(secondData);
             setSecondData(data);
             navigate("/profile");
+            setVisible({...visible,profileV:"visible",galleryV:"hidden",todoV:"hidden",postV:"hidden"})
           }}
           className="flex py-3 border-b cursor-pointer"
         >
@@ -85,6 +87,7 @@ const ProfileNavbar = () => {
             setData(thirdData);
             setThirdData(data);
             navigate("/profile");
+            setVisible({...visible,profileV:"visible",galleryV:"hidden",todoV:"hidden",postV:"hidden"})
           }}
           className="flex py-3 border-b cursor-pointer"
         >
@@ -95,7 +98,7 @@ const ProfileNavbar = () => {
           <p className="text-[#1c2938] text-[15px] my-auto">{thirdData.name}</p>
         </div>
         <div className="items-center justify-center flex">
-          <button className="border bg-[#d55151] rounded-[20px] text-[white] px-3 py-1 mt-2">
+          <button onClick={()=>{navigate("/");setVisibleDropdown(false)}} className="border bg-[#d55151] rounded-[20px] text-[white] px-3 py-1 mt-2">
             Sign out
           </button>
         </div>

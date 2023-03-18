@@ -34,7 +34,7 @@ const Homepage = () => {
 
   return (
     <div className="w-screen h-screen bg-[url(https://cdn.wallpapersafari.com/71/41/2lQSnF.jpg)]">
-      <div className="w-[40%] h-[80%] mx-auto left-0 right-0 fixed bottom-0 bg-[white] rounded-t-[15px] shadow-xl">
+      <div className="w-[80%] sm:w-[40%] h-[80%] mx-auto left-0 right-0 fixed bottom-0 bg-[white] rounded-t-[15px] shadow-xl">
         <div className="py-8 bg-[#f6f6f6] rounded-t-[15px] font-medium text-[18px] text-[#5f5f5f] mx-auto">
           <p className="text-center">Select an account</p>
         </div>
