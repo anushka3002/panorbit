@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { UserContext } from "../../App";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -48,6 +48,7 @@ const ProfileNavbar = () => {
         <img
           className="w-[50%] h-[50%] rounded-[50%] mx-auto"
           src={data.profilepicture}
+          alt="profile"
         ></img>
         <p className="font-medium text-[18px] text-[#545454] text-center">
           {data.name}
@@ -65,6 +66,7 @@ const ProfileNavbar = () => {
           <img
             className="w-[30px] h-[30px] rounded-[50%] mr-3"
             src={secondUser.profilepicture}
+            alt="profile"
           ></img>
           <p className="text-[#1c2938] text-[15px] my-auto">
             {secondUser.name}
@@ -82,6 +84,7 @@ const ProfileNavbar = () => {
           <img
             className="w-[30px] h-[30px] rounded-[50%] mr-3"
             src={thirdUser.profilepicture}
+            alt="profile"
           ></img>
           <p className="text-[#1c2938] text-[15px] my-auto">{thirdUser.name}</p>
         </div>

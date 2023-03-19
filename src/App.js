@@ -25,13 +25,13 @@ function App() {
   }
 
   useEffect(() => {
-    if (location.pathname == "/") {
+    if (location.pathname === "/") {
       setVisibleDropdown(false);
     }
   }, [location.pathname]);
 
   const handleShow = () => {
-    visibleDropdown == true && setVisibleDropdown(false);
+    visibleDropdown === true && setVisibleDropdown(false);
     showChat && setShowChat(false);
     showList && setShowList(false);
   };

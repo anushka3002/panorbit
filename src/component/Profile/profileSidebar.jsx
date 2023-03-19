@@ -21,7 +21,7 @@ const ProfileSidebar = () => {
                   <p
                     onClick={() => setVisibleScreen(e)}
                     className={`${
-                      location.pathname.substring(1) == e &&
+                      location.pathname.substring(1) === e &&
                       "font-medium text-[white]"
                     } text-[#9e9ee1]`}
                   >
@@ -30,7 +30,7 @@ const ProfileSidebar = () => {
                 </Link>
                 <div
                   className={`${
-                    location.pathname.substring(1) == e ? "block" : "hidden"
+                    location.pathname.substring(1) === e ? "block" : "hidden"
                   } px-2 py-1 bg-[white] rounded-[40%] mr-[-10px] my-auto`}
                 >
                   <img
@@ -39,7 +39,7 @@ const ProfileSidebar = () => {
                   ></img>
                 </div>
               </div>
-              <hr className={`${e == "gallery" && "hidden"} mr-8 `}></hr>
+              <hr className={`${e === "gallery" && "hidden"} mr-8 `}></hr>
             </div>
           );
         })}

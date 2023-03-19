@@ -7,7 +7,7 @@ const Profile = () => {
 
   return (
     <div className="sm:mr-12 mr-5  mt-8">
-      {data?.name == undefined ? (
+      {data?.name === undefined ? (
         <div className=" w-full items-center text-center my-auto">
           {/* if user navigated manually by changing the route then no data available will be shown */}
           <p className="sm:text-7xl text-5xl font-bold text-[#eeeeee] mt-[150px]">
@@ -21,6 +21,7 @@ const Profile = () => {
             <img
               className="w-[50%] mx-auto rounded-[50%]"
               src={data.profilepicture}
+              alt="profile"
             ></img>
             <p className="text-center font-medium text-[18px] text-[#545454]">
               {data.name}

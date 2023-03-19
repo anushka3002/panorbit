@@ -34,6 +34,7 @@ const Chat = () => {
                 <img
                   className="w-[27px] rounded-[50%] mr-3"
                   src={chatUser.profilepicture}
+                  alt="profile"
                 ></img>
                 <p className="text-[white] text-[12px] my-auto">
                   {chatUser.name}
@@ -43,10 +44,12 @@ const Chat = () => {
                 <img
                   className="w-[12px] h-[7px] flex my-auto"
                   src="https://www.seekpng.com/png/full/914-9148298_downarrow-white-down-arrow-icon-white.png"
+                  alt="arrow"
                 ></img>
                 <img
                   className="w-[14px] h-[10px] flex my-auto ml-2"
                   src="https://iconsplace.com/wp-content/uploads/_icons/ffffff/256/png/letter-x-icon-18-256.png"
+                  alt="cross"
                 ></img>
               </div>
             </div>
@@ -94,6 +97,7 @@ const Chat = () => {
               onClick={handleChat}
               className="w-[14px] h-[14px] w-[10%] my-auto cursor-pointer"
               src="https://cdn-icons-png.flaticon.com/512/3682/3682321.png"
+              alt="send"
             ></img>
           </div>
         </div>
@@ -107,13 +111,14 @@ const Chat = () => {
             className=" bg-[#2c65c8] cursor-pointer justify-between px-3 flex py-2 w-full flex rounded-t-[12px]"
           >
             <div className="flex">
-              <img className="w-[30px] h-[20px] my-auto" src="/chat.png"></img>
+              <img className="w-[30px] h-[20px] my-auto" src="/chat.png" alt="chat"></img>
               <p className="text-[white]">Chats</p>
             </div>
             <div className="my-auto">
               <img
                 className="w-[15px] h-[7px] flex my-auto"
                 src="https://www.seekpng.com/png/full/914-9148298_downarrow-white-down-arrow-icon-white.png"
+                alt="arrow"
               ></img>
             </div>
           </div>
@@ -136,6 +141,7 @@ const Chat = () => {
                     <img
                       className="w-[30px] h-[30px] rounded-[50%] mr-3"
                       src={e.profilepicture}
+                      alt="profile"
                     ></img>
                     <p className="text-[#1c2938] text-[13px] my-auto">
                       {e.name}
@@ -143,7 +149,7 @@ const Chat = () => {
                   </div>
                   <div
                     className={`${
-                      e.id == 2 || e.id == data.id || e.id == 3 || e.id == 7
+                      e.id === 2 || e.id === data.id || e.id === 3 || e.id === 7
                         ? "bg-[#1eaa5c]"
                         : "bg-[#d4d4d4]"
                     } w-[7px] h-[7px] rounded-[50%] my-auto`}

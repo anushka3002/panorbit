@@ -28,10 +28,10 @@ const Homepage = () => {
   }, []);
 
   const handleClick = (e) => {
-    e.id == users.length
+    e.id === users.length
       ? localStorage.setItem("secondUser", JSON.stringify(users[0]))
       : localStorage.setItem("secondUser", JSON.stringify(users[e.id]));
-    e.id == users.length - 1
+    e.id === users.length - 1
       ? localStorage.setItem("thirdUser", JSON.stringify(users[0]))
       : e.id == users.length
       ? localStorage.setItem("thirdUser", JSON.stringify(users[1]))
