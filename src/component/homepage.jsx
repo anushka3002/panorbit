@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { useEffect } from "react";
 import axios from "axios";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../App";
+import Skeleton from "react-loading-skeleton";
 
 const Homepage = () => {
-  let value = useContext(UserContext);
-  const {users,setUsers} = value
+  const value = useContext(UserContext);
+  const { users, setUsers } = value;
 
   // fetching data from api
   useEffect(() => {
@@ -16,7 +16,10 @@ const Homepage = () => {
         .get("https://panorbit.in/api/users.json")
         .then((response) => {
           setUsers(response.data.users);
-          localStorage.setItem("all users",JSON.stringify(response.data.users))
+          localStorage.setItem(
+            "all users",
+            JSON.stringify(response.data.users)
+          );
         })
         .catch((err) => {
           console.log(err);
@@ -25,10 +28,15 @@ const Homepage = () => {
   }, []);
 
   const handleClick = (e) => {
-    e.id==users.length ? localStorage.setItem("secondUser",JSON.stringify(users[0])) : localStorage.setItem("secondUser",JSON.stringify(users[e.id]))
-    e.id==users.length-1 ? localStorage.setItem("thirdUser",JSON.stringify(users[0])) : e.id==users.length ? localStorage.setItem("thirdUser",JSON.stringify(users[1])) : localStorage.setItem("thirdUser",JSON.stringify(users[e.id+1]))
-    localStorage.setItem("panorbit users", JSON.stringify(e));
-    localStorage.setItem("panorbit user",JSON.stringify(e))
+    e.id == users.length
+      ? localStorage.setItem("secondUser", JSON.stringify(users[0]))
+      : localStorage.setItem("secondUser", JSON.stringify(users[e.id]));
+    e.id == users.length - 1
+      ? localStorage.setItem("thirdUser", JSON.stringify(users[0]))
+      : e.id == users.length
+      ? localStorage.setItem("thirdUser", JSON.stringify(users[1]))
+      : localStorage.setItem("thirdUser", JSON.stringify(users[e.id + 1]));
+    localStorage.setItem("panorbit user", JSON.stringify(e));
   };
 
   return (
@@ -42,17 +50,23 @@ const Homepage = () => {
           {users.map((e) => {
             return (
               <Link to="/profile">
-                <div
-                  onClick={() => handleClick(e)}
-                  key={e.id}
-                  className="flex py-3 border-b cursor-pointer"
-                >
-                  <img
-                    className="w-[30px] h-[30px] rounded-[50%] mr-3"
-                    src={e.profilepicture}
-                  ></img>
-                  <p className="text-[#1c2938] text-[15px] my-auto">{e.name}</p>
-                </div>
+                {users.length > 0 ? (
+                  <div
+                    onClick={() => handleClick(e)}
+                    key={e.id}
+                    className="flex py-3 border-b cursor-pointer"
+                  >
+                    <img
+                      className="w-[30px] h-[30px] rounded-[50%] mr-3"
+                      src={e.profilepicture}
+                    ></img>
+                    <p className="text-[#1c2938] text-[15px] my-auto">
+                      {e.name}
+                    </p>
+                  </div>
+                ) : (
+                  <Skeleton height="46px" />
+                )}
               </Link>
             );
           })}

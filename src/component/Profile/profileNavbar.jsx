@@ -4,10 +4,10 @@ import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const ProfileNavbar = () => {
-  let secondUser = JSON.parse(localStorage.getItem("secondUser")) || [];
-  let thirdUser = JSON.parse(localStorage.getItem("thirdUser")) || [];
+  const secondUser = JSON.parse(localStorage.getItem("secondUser")) || [];
+  const thirdUser = JSON.parse(localStorage.getItem("thirdUser")) || [];
 
-  let value = useContext(UserContext);
+  const value = useContext(UserContext);
   const {
     data,
     visibleDropdown,
@@ -36,7 +36,7 @@ const ProfileNavbar = () => {
             className="w-[30px] h-[30px] rounded-[50%]"
             src={data.profilepicture}
           ></img>
-          <p className="ml-3">{data.name}</p>
+          <p className="ml-3 text-[#1c2938]">{data.name}</p>
         </div>
       </div>
       {/* user dropdown */}

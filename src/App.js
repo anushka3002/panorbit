@@ -5,10 +5,12 @@ import { useLocation } from "react-router-dom";
 import ProfileNavbar from "./component/Profile/profileNavbar";
 import { createContext, useEffect, useState } from "react";
 import Chat from "./component/chat";
-export let UserContext = createContext();
+import { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+export const UserContext = createContext();
 
 function App() {
-  let data = JSON.parse(localStorage.getItem("panorbit user")) || [];
+  const data = JSON.parse(localStorage.getItem("panorbit user")) || [];
   const [users, setUsers] = useState([]);
   const [visibleDropdown, setVisibleDropdown] = useState(false);
   const [showList, setShowList] = useState(false);
@@ -34,6 +36,7 @@ function App() {
     showList && setShowList(false);
   };
 
+  // passing states as context for other components
   const mainData = {
     data,
     visibleDropdown,
@@ -50,6 +53,7 @@ function App() {
   };
 
   return (
+    <SkeletonTheme baseColor="#cccccc" highlightColor="#a2a2a2" duration={0.7}>
     <UserContext.Provider value={mainData}>
       <div onClick={() => handleShow()} className="flex">
         {location.pathname !== "/" && <ProfileSidebar />}
@@ -60,6 +64,7 @@ function App() {
       </div>
       {location.pathname !== "/" && <Chat />}
     </UserContext.Provider>
+    </SkeletonTheme>
   );
 }
 
